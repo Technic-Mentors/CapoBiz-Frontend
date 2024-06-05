@@ -80,6 +80,7 @@ function Industrysolutions() {
         </div>
       </section>
 
+
       <section
         className="pills-tab-section px-2 py-4 "
         style={{ backgroundColor: "#FAFAFA" }}
