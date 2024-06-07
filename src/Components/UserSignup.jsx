@@ -8,11 +8,14 @@ export default function UserSignup() {
   const [credentials, setCedentials] = useState({
     name: "",
     email: "",
+    bussinessName: "",
+    number: "",
+    bussinessType: "",
+    requirenments: "",
   });
   const Signup = async (e) => {
     e.preventDefault();
-    const form = formRef.current;
-    const { name, email } = credentials;
+    const { name, email, bussinessName, number, bussinessType, requirenments } = credentials;
     const nameI = document.getElementById("nameI");
     const emailI = document.getElementById("emailI");
     const contact = document.getElementById("number");
@@ -29,7 +32,7 @@ export default function UserSignup() {
     } else {
       emailI.innerText = "";
     }
-    if (!form.number.value) {
+    if (!number) {
       contact.innerText = "Enter Contact Number";
       Error = true;
     } else {
@@ -39,13 +42,13 @@ export default function UserSignup() {
       return;
     }
     const res = await fetch(
-      "https://capobiz-backend.vercel.app/api/auth/signUpUser",
+      "http://localhost:8002/api/auth/addDemoUser",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, bussinessName, number, bussinessType, requirenments }),
       }
     );
     const data = await res.json();
@@ -103,6 +106,8 @@ export default function UserSignup() {
                 className="form-control mt-4"
                 type="name"
                 name="bussinessName"
+                value={credentials.bussinessName}
+                onChange={onchange}
                 placeholder="Bussiness Name"
               />
               <div id="emailI" style={{ color: "red" }}></div>
@@ -111,6 +116,8 @@ export default function UserSignup() {
                 className="form-control mt-4"
                 type="number"
                 name="number"
+                value={credentials.number}
+                onChange={onchange}
                 placeholder="Contact Number"
               />
               <div id="number" style={{ color: "red" }}></div>
@@ -119,6 +126,8 @@ export default function UserSignup() {
                 className="form-control mt-4"
                 type="name"
                 name="bussinessType"
+                value={credentials.bussinessType}
+                onChange={onchange}
                 placeholder="Bussiness Type"
               />
               <div id="emailI" style={{ color: "red" }}></div>
@@ -127,7 +136,9 @@ export default function UserSignup() {
                 rows={7}
                 className="form-control mt-4"
                 type="name"
-                name="requirements"
+                name="requirenments"
+                value={credentials.requirenments}
+                onChange={onchange}
                 placeholder=" Any specific requirements"
               />
 

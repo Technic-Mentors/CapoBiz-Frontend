@@ -29,6 +29,15 @@ import Retail from './Components/Retail';
 import Restaurant from './Components/Restaurant';
 import DetailFAQ from './Components/DetailFAQ';
 import Hardware from './Components/Hardware';
+import UserLogin from './Components/UserLogin';
+import Signup from './Components/Signup';
+import UserProfile from './Components/UserProfile';
+import TicketGenerate from './Components/TicketGenerate';
+import SolvedTickets from './Components/SolvedTickets';
+import PendingTicket from './Components/PendingTicket';
+import GeneratedTickets from './Components/GeneratedTickets';
+import Help from './Components/Help';
+import AllTickets from './Components/AllTickets';
 // import Navbtransparent from './Components/Navtransparent';
 
 function App() {
@@ -52,14 +61,25 @@ function App() {
             <Route path="/retail" element={<Retail />} />
             <Route path="/restaurant" element={<Restaurant />} />
             <Route path="/system-hardware" element={<Hardware />} />
-            <Route path="/faqs" element={<DetailFAQ/>} />
+            <Route path="/faqs" element={<DetailFAQ />} />
             <Route path="/header" element={<Testheader />} />
             <Route path="/transparent" element={<Transparent />} />
+            <Route path="/userLogin" element={<UserLogin />} />
+            <Route path="/userSignup" element={<Signup />} />
+            <Route path="/help" element={<Help />} />
+
+            <Route path="/user-profile" element={<UserProfile />} >
+              <Route index element={<Navigate to="ticket-generate" />} />
+              <Route path="ticket-generate" element={<TicketGenerate />} />
+              <Route path="generated-tickets" element={<GeneratedTickets />} />
+              <Route path="open-status-tickets" element={<SolvedTickets />} />
+              <Route path="close-status-tickets" element={<PendingTicket />} />
+            </Route>
 
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:postSlug" element={<Blogcat />} />
             <Route path="/signin" element={<Login />} />
-            <Route path='/admin' element={<Admin />}>
+            <Route path='/adminPanel' element={<Admin />}>
               <Route index element={<Navigate to="addblog" />} />
               <Route path="addblog" element={<Blogcategory />} />
               <Route path="demoUsers" element={<DemoUsers />} />
@@ -67,6 +87,7 @@ function App() {
               <Route path="addcategory" element={<Addcategory />} />
               <Route path="allcategory" element={<Allcategory />} />
               <Route path="board" element={<Board />} />
+              <Route path="allTickets" element={<AllTickets/>} />
             </Route>
           </Routes>
           <Footer />

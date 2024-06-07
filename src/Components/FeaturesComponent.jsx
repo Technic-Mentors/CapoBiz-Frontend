@@ -68,7 +68,7 @@ function FeaturesComponent() {
                   <div className='card features-card'>
                     <div className='card-content'>
                      {/* <span style={{color: 'var(--secondary-color)'}}> {icon}</span> */}
-                     {React.cloneElement(icon, { style: { color: 'var(--secondary-color)', fontSize: '35px' } })}
+                     {React.cloneElement(icon, { style: { color: 'var(--secondary-color)', fontSize: '35px' }, className: 'features-icons' })}
                       <h2 className='mt-3'> {title}</h2>
                       <p>{description}</p>
                     </div>

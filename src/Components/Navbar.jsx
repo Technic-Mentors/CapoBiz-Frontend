@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import capoLogo from '../Assets/Images/CapoBiz-LOGO.avif'
 
 function Navbar() {
   const location = useLocation();
-  const user = JSON.parse(sessionStorage.getItem("signUser")|| "{}") ;
+  const navRef = useRef()
+  const user = JSON.parse(sessionStorage.getItem("signUser") || "{}");
   const [collapsed, setCollapsed] = useState(true);
 
+  useEffect(() => {
+    const handleNav = (e) => {
+      if (window.innerWidth <= 768 && !collapsed) {
+        if (navRef.current && !navRef.current.contains(e.target)) {
+          setCollapsed(!collapsed)
+        }
+      }
+    }
+    document.body.addEventListener("click", handleNav)
+    return (() => {
+      document.body.removeEventListener("click", handleNav)
+    })
+  })
   const toggleNavbar = () => setCollapsed(!collapsed);
-  const closeNavbar = () => setCollapsed(true);
+  const closeNavbar = () => {
+    if (window.innerWidth <= 768) {
+      setCollapsed(true)
+    };
+  }
 
   const activeLink = (link) => {
-    return location.pathname === link ? 'active' : '';
+    return location.pathname === link ? 'active-link' : '';
   };
 
- if (location.pathname === "/admin/addblog" || location.pathname === "/admin/allposts" || location.pathname === "/admin/allcategory" || location.pathname === "/admin/addcategory" || location.pathname === "/admin/board" || location.pathname === "/admin/demoUsers") {
+  if (location.pathname === "/adminPanel/addblog" || location.pathname === "/adminPanel/allposts" || location.pathname === "/adminPanel/allcategory" || location.pathname === "/adminPanel/addcategory" || location.pathname === "/adminPanel/board" || location.pathname === "/adminPanel/demoUsers" || location.pathname === "/adminPanel/allTickets" || location.pathname === "/user-profile/generated-tickets" || location.pathname === "/user-profile/ticket-generate" || location.pathname === "/user-profile/open-status-tickets" || location.pathname === "/user-profile/close-status-tickets") {
     return null;
   }
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light" ref={navRef}>
         <div className="container-fluid main-nav px-4 py-1">
           <Link className="navbar-brand" to="/" onClick={closeNavbar}>
-            <img src={capoLogo} alt="capobiz-point-of-sale-software-logo" className="img-fluid logo" style={{height: '60px'}}/>
+            <img src={capoLogo} alt="capobiz-point-of-sale-software-logo" className="img-fluid logo" style={{ height: '60px' }} />
           </Link>
           <button
             className={`navbar-toggler ${collapsed ? '' : 'collapsed'}`}
@@ -38,61 +56,66 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className={`collapse navbar-collapse menu-bar ${collapsed ? '' : 'show'}`} id="navbarSupportedContent">
-            <ul className="navbar-nav mx-auto mb-2 mb-lg-0" onClick={closeNavbar}>
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/')}`} to="/">
+                <Link className={`nav-link nav-link-after ${activeLink('/')}`} to="/" onClick={closeNavbar}>
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/about')}`} to="/about">
+                <Link className={`nav-link nav-link-after ${activeLink('/about')}`} to="/about" onClick={closeNavbar}>
                   About
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/pos-features')}`} to="/pos-features">
+                <Link className={`nav-link nav-link-after ${activeLink('/pos-features')}`} to="/pos-features" onClick={closeNavbar}>
                   Features
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/system-hardware')}`} to="/system-hardware">
+                <Link className={`nav-link nav-link-after ${activeLink('/system-hardware')}`} to="/system-hardware" onClick={closeNavbar}>
                   Hardware
                 </Link>
               </li>
 
-              {/* <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/retail')}`} to="/retail">
-                  Retail
-                </Link>
-              </li>
-
               <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/restaurant')}`} to="/restaurant">
-                  Restaurant
-                </Link>
-              </li> */}
-
-              <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/pos-industries')}`} to="/pos-industries">
+                <Link className={`nav-link nav-link-after ${activeLink('/pos-industries')}`} to="/pos-industries" onClick={closeNavbar}>
                   Industry Solutions
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/blog')}`} to="/blog">
-                  Blog
-                </Link>
+
+              <li className="dropdown nav-item">
+                <div className="dropdown-toggle nav-link" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Help Center
+                </div>
+                <ul className="dropdown-menu navMenu" aria-labelledby="dropdownMenuButton1">
+                  <li className="nav-item">
+                    <Link className={`nav-link nav-link-after ${activeLink('/help')}`} to="/help" onClick={closeNavbar}>
+                      Knowledgebase
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className={`nav-link nav-link-after ${activeLink('/blog')}`} to="/blog" onClick={closeNavbar}>
+                      Blog
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className={`nav-link nav-link-after ${activeLink('/faqs')}`} to="/faqs" onClick={closeNavbar}>
+                      FAQ's
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className={`nav-link nav-link-after ${activeLink('/userLogin')}`} to="/userLogin" onClick={closeNavbar}>
+                      Generate Ticket
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className={`nav-link nav-link-after ${activeLink('/contact')}`} to="/contact" onClick={closeNavbar}>
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
               </li>
-              <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/faqs')}`} to="/faqs">
-                  FAQ's
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className={`nav-link ${activeLink('/contact')}`} to="/contact">
-                  Contact Us
-                </Link>
-              </li>
-              
             </ul>
             <div className="demo-button">
               <Link to={user && user.name ? "/pos-demo" : "/Signup"}>

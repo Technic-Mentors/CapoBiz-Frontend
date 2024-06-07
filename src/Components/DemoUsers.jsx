@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function DemoUsers() {
   const [users, setUsers] = useState([]);
@@ -24,11 +23,7 @@ export default function DemoUsers() {
 
   return (
     <div>
-      <div className="d-flex justify-content-end">
-        <Link to="/">
-          <button className="btn btn-primary">Log Out</button>
-        </Link>
-      </div>
+      
       <table
         className="table table-bordered mt-3"
         style={{ backgroundColor: "white" }}
@@ -37,7 +32,10 @@ export default function DemoUsers() {
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>School Name</th>
+            <th>Contact Number</th>
+            <th>Bussiness Name</th>
+            <th>Bussiness Type</th>
+            <th>Requirenments</th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +45,10 @@ export default function DemoUsers() {
                 <tr>
                   <td>{User.name}</td>
                   <td>{User.email}</td>
-                  <td>{User.schoolName}</td>
+                  <td>{User.number}</td>
+                  <td>{User.bussinessName}</td>
+                  <td>{User.bussinessType}</td>
+                  <td>{User.requirenments}</td>
                 </tr>
               );
             })}

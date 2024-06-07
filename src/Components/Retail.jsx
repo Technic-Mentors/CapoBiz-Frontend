@@ -11,19 +11,9 @@ import mockImage from "../Assets/Images/retail-software-mock-up-image.avif";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import retailPOSBenefits from '../Assets/Images/benefits-of-retail-pos.avif'
-import AlAhad from "../Assets/Images/Clients/client-alahadmarketing-logo.png";
-import AlMahdia from "../Assets/Images/Clients/client-almahdia-logo.png";
-import AlMakkah from "../Assets/Images/Clients/client-almakah-logo.png";
-import Danish from "../Assets/Images/Clients/client-danish-groupco-logo.png";
-import GetWell from "../Assets/Images/Clients/client-getwellpk-logo.png";
-import LetTech from "../Assets/Images/Clients/client-lettechnologies-logo.png";
-import Mobilfiksern from "../Assets/Images/Clients/client-mobilefiksers-logo.png";
-import PunjabEstate from "../Assets/Images/Clients/client-punjabestate-logo.png";
-import Sheikh from "../Assets/Images/Clients/client-sheikhlaw-logo.png";
-import K2land from "../Assets/Images/Clients/K2Land-LOGO.png";
-import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Clients from "./Clients";
 
 
 
@@ -33,43 +23,43 @@ function Retail() {
     AOS.init();
   }, []);
 
-  var settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 7000,
-    autoplaySpeed: 0,
-    cssEase: "linear",
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  // var settings = {
+  //   dots: false,
+  //   arrows: false,
+  //   infinite: true,
+  //   slidesToShow: 4,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   speed: 7000,
+  //   autoplaySpeed: 0,
+  //   cssEase: "linear",
+  //   responsive: [
+  //     {
+  //       breakpoint: 1024,
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 3,
+  //         infinite: true,
+  //         dots: true,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 600,
+  //       settings: {
+  //         slidesToShow: 2,
+  //         slidesToScroll: 2,
+  //         initialSlide: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 480,
+  //       settings: {
+  //         slidesToShow: 1,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // };
 
 
   const [activeTab, setActiveTab] = useState("clothing-and-apparel");
@@ -225,58 +215,9 @@ function Retail() {
             </div>
           </div>
         </div>
-      </section>
-
-      <div
-        className="container clients"
-        style={{ backgroundColor: "", minHeight: "200px" }}
-      >
-        <div className="row d-flex justify-content-center align-items-center">
-          <div className="col-md-10 col-12 py-7" data-aos="fade-up" data-aos-offset="200" data-aos-duration="1200">
-            <Slider {...settings}>
-              <div>
-                <img src={AlAhad} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img src={AlMahdia} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img src={AlMakkah} className="img-fluid" alt="pos-clients" />
-              </div>
-
-              <div>
-                <img src={Danish} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img src={GetWell} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img src={LetTech} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img
-                  src={Mobilfiksern}
-                  className="img-fluid"
-                  alt="pos-clients"
-                />
-              </div>
-              <div>
-                <img
-                  src={PunjabEstate}
-                  className="img-fluid"
-                  alt="pos-clients"
-                />
-              </div>
-              <div>
-                <img src={Sheikh} className="img-fluid" alt="pos-clients" />
-              </div>
-              <div>
-                <img src={K2land} className="img-fluid" alt="pos-clients" />
-              </div>
-            </Slider>
-          </div>
-        </div>
-      </div>
+        <hr />
+        <Clients />
+      </section>      
 
       <section
         className="mock-up-image py-5"

@@ -112,9 +112,6 @@ function FeaturesPage() {
         </div>
       </section>
 
-
-
-
       <section className="features-intro" data-aos="fade-up" data-aos-offset="200" data-aos-duration="1200">
         <div className="container mt-5">
           <div className="row">
@@ -137,9 +134,8 @@ function FeaturesPage() {
               return (
                 <div key={id} className='col-md-4 col-12 features-col mb-4 d-flex align-items-stretch' data-aos="fade-up" data-aos-offset="200" data-aos-duration="1200">
                   <div className='card features-card '>
-                    <div className='card-content'>
-                     {/* <span style={{color: 'var(--secondary-color)'}}> {icon}</span> */}
-                     {React.cloneElement(icon, { style: { color: 'var(--secondary-color)', fontSize: '35px' } })}
+                    <div className='card-content '>
+                     {React.cloneElement(icon, { style: { color: 'var(--secondary-color)', fontSize: '35px' }, className: 'features-icons' })}
                       <h2 className='mt-3'> {title}</h2>
                       <p>{description}</p>
                     </div>
@@ -151,8 +147,6 @@ function FeaturesPage() {
           </div>
         </div>
       </section>
-
-
 
       <section className="custom-features p-4" style={{backgroundColor: '#fafafa'}} data-aos="fade-up" data-aos-offset="200" data-aos-duration="1200">
         <div className="container">

@@ -3,36 +3,35 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const [credentials, setCredentials] = useState({
-        email: "",
-        password: "",
-      });
-      let navigate = useNavigate();
-      const handlesubmit = async (e) => {
-        e.preventDefault();
-        const { email, password } = credentials;
-        const res = await fetch("https://capobiz-backend.vercel.app/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-        const json = await res.json();
-        console.log(json)
-        const both = document.getElementById("number");
-        both.innerText = json.error;
-        if (json.success) {
-          localStorage.setItem("token", json.authtoken);
-          navigate("/admin");
-        }
-      };
-      const onchange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-      };
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  let navigate = useNavigate();
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = credentials;
+    const res = await fetch("https://capobiz-backend.vercel.app/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const json = await res.json();
+    console.log(json)
+    const both = document.getElementById("number");
+    both.innerText = json.error;
+    if (res.ok) {
+      navigate("/adminPanel");
+    }
+  };
+  const onchange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
   return (
     <div
-      style={{ backgroundColor:"#f1f6fe"}}
+      style={{ backgroundColor: "#f1f6fe" }}
       className="background-img5"
     >
       <div className="color-overlay5">

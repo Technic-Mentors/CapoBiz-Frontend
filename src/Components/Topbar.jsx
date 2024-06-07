@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 function Topbar() {
     const location = useLocation()
 
-    if (location.pathname === "/admin/addblog" || location.pathname === "/admin/allposts" || location.pathname === "/admin/allcategory" || location.pathname === "/admin/addcategory" || location.pathname === "/admin/board" || location.pathname === "/admin/demoUsers") {
+    if (location.pathname === "/adminPanel/addblog" || location.pathname === "/adminPanel/allposts" || location.pathname === "/adminPanel/allcategory" || location.pathname === "/adminPanel/addcategory" || location.pathname === "/adminPanel/board" || location.pathname === "/adminPanel/demoUsers" || location.pathname === "/adminPanel/allTickets") {
         return null;
     }
     return (
@@ -14,15 +14,9 @@ function Topbar() {
                     <div className="row">
                         <div className="col-md-8">
                             <div className="top-bar-left">
-                                {/* <div className="text mt-2">
-                                <i className="far fa-clock"></i>&nbsp;
-                                <h2>9:00AM - 6:00PM</h2>
-                                <p>Mon - Fri</p>
-                            </div> */}
                                 <div className="text mt-2">
                                     
                                     <h2 style={{ fontFamily: 'poppins' }}> For Demo: <i className="fab fa-whatsapp"></i>&nbsp;+923 111 122 144</h2>
-                                    {/* <p>For Appointment</p> */}
                                 </div>
                             </div>
                         </div>
